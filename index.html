@@ -214,10 +214,16 @@
 
          .bomba {
              position: absolute;
-             width: 15px; /* Ancho de la bomba */
-             height: 15px; /* Altura de la bomba */
-             background-color: black; /* Color de la bomba */
-             border-radius: 50%; /* Forma redonda */
+             /* Usamos la imagen para la bomba */
+             background-image: url('https://raw.githubusercontent.com/LOLAPALUPULO/LOLA-Shot/refs/heads/main/bomba.svg');
+             background-size: contain; /* Ajusta la imagen al tamaño del contenedor */
+             background-repeat: no-repeat; /* Evita que la imagen se repita */
+             background-position: center; /* Centra la imagen en el contenedor */
+             width: 25px; /* Ancho de la bomba */
+             height: 25px; /* Altura de la bomba */
+             /* Eliminamos background-color y border-radius ya que usamos una imagen */
+             /* background-color: black; */
+             /* border-radius: 50%; */
              z-index: 6; /* Asegura que la bomba esté por encima de los objetivos */
          }
 
@@ -863,11 +869,13 @@
              const bomba = document.createElement('div');
              bomba.classList.add('bomba');
 
-             // Posición inicial de la bomba (debajo del helicóptero)
+             // Posición inicial de la bomba (debajo del helicóptero y un poco hacia adelante)
              const helicopteroRect = helicoptero.getBoundingClientRect();
              const gameAreaRect = gameArea.getBoundingClientRect();
-             let startX = (helicopteroRect.left - gameAreaRect.left) + helicoptero.offsetWidth / 2 - 7.5; // Centrar horizontalmente (15px ancho / 2)
-             let startY = (helicopteroRect.bottom - gameAreaRect.top); // Justo debajo del helicóptero
+             // Calcular la posición inicial X para que salga un poco hacia adelante
+             let startX = (helicopteroRect.left - gameAreaRect.left) + helicoptero.offsetWidth + 10; // Ajusta '10' para moverla más o menos hacia adelante
+             // Posición inicial Y (justo debajo del helicóptero)
+             let startY = (helicopteroRect.bottom - gameAreaRect.top);
 
              bomba.style.left = startX + 'px';
              bomba.style.top = startY + 'px';
