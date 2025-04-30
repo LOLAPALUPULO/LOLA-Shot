@@ -20,30 +20,49 @@
         }
 
         #inicio {
-            /* Ya está centrado con transform, pero aseguramos que no interfiera */
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0; /* Posicionar arriba */
+            left: 0; /* Posicionar a la izquierda */
+            width: 100%; /* Ocupar todo el ancho */
+            height: 100%; /* Ocupar toda la altura */
+            transform: none; /* Eliminar la transformación de centrado */
+            display: flex; /* Usar flexbox para centrar el contenido */
+            flex-direction: column; /* Apilar contenido verticalmente */
+            justify-content: flex-start; /* Alinear contenido al inicio (arriba) */
+            align-items: center; /* Centrar contenido horizontalmente */
             text-align: center;
             z-index: 20; /* Aseguramos que esté por encima del juego */
-            /* Aseguramos que no sea más ancho que la pantalla */
-            max-width: 95%;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            padding: 50px 10px 10px 10px; /* Añadir padding superior para el texto */
+            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
+            border-radius: 0; /* Eliminar bordes redondeados */
+            box-shadow: none; /* Eliminar sombra */
+            /* Fondo con la imagen del helicóptero */
+            background-image: url('https://raw.githubusercontent.com/MauroCasarin/Lola-Game/refs/heads/main/lola.svg');
+            background-size: cover; /* Ajusta la imagen para cubrir todo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-position: center; /* Centra la imagen */
         }
 
         #inicio h1 {
-            font-size: 2em; /* Tamaño de fuente relativo */
-            margin-bottom: 20px;
+            font-size: 3em; /* Tamaño de fuente un poco más grande para el título */
+            margin-bottom: 30px; /* Más espacio debajo del título */
+            /* Sombra para el texto del título */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+            color: white; /* Color de texto blanco para que se vea sobre la imagen */
         }
 
         #inicio button {
              padding: 10px 20px;
              font-size: 1.2em;
              cursor: pointer;
+             /* Sombreado para el botón de inicio */
+             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+             transition: box-shadow 0.2s ease-in-out; /* Transición suave para el sombreado */
+             margin-top: 20px; /* Espacio arriba del botón */
+        }
+
+        #inicio button:hover {
+            box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.5); /* Sombreado más pronunciado al pasar el mouse */
         }
 
 
@@ -99,14 +118,34 @@
             left: 10%;
             transform: translateY(-50%);
             z-index: 5; /* Asegura que el helicóptero esté por encima del fondo y nubes */
+            /* Transición para la rotación */
+            transition: transform 0.5s ease-in-out;
         }
+
+         /* Animación de rotación 360 grados */
+         @keyframes rotate360 {
+             from {
+                 transform: translateY(-50%) rotate(0deg);
+             }
+             to {
+                 transform: translateY(-50%) rotate(360deg);
+             }
+         }
+
+         .rotate {
+             animation: rotate360 0.5s linear; /* Aplicar la animación */
+         }
+
 
         #botones {
             display: flex;
             justify-content: space-between; /* Distribuye el espacio entre los grupos de botones */
             align-items: center; /* Centra los botones verticalmente */
             padding: 10px; /* Espacio alrededor de los botones */
-            background-color: rgba(0, 0, 0, 0.2); /* Fondo semi-transparente para la barra de botones */
+            /* Estilos para modernizar la barra de botones */
+            background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente más oscuro */
+            border-radius: 0 0 10px 10px; /* Bordes redondeados solo en la parte inferior */
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3); /* Sombra en la parte superior */
             flex-shrink: 0; /* Evita que los botones se encojan */
         }
 
@@ -130,6 +169,8 @@
             margin: 0 10px; /* Espacio a los lados */
             color: white; /* Color de texto para que se vea sobre el fondo semi-transparente */
             font-size: 0.9em; /* Tamaño de fuente un poco más pequeño */
+            /* Sombreado para la sección de detalles */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Sombra para el texto */
         }
 
         #botones .details .items {
@@ -142,6 +183,8 @@
             width: 50px; /* Tamaño fijo para las imágenes de detalles */
             height: 50px;
             object-fit: contain; /* Asegura que la imagen se ajuste sin distorsionarse */
+            /* Sombreado para las imágenes de detalles */
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5)); /* Sombra para imágenes PNG/SVG */
         }
 
 
@@ -152,7 +195,15 @@
             border: none;
             background-color: transparent; /* Fondo transparente para los botones */
             cursor: pointer;
+             /* Sombreado para los botones (imágenes) */
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5)); /* Sombra para imágenes PNG/SVG */
+            transition: filter 0.2s ease-in-out; /* Transición suave para el sombreado */
         }
+
+         #botones button:hover {
+             filter: drop-shadow(3px 3px 7px rgba(0, 0, 0, 0.7)); /* Sombreado más pronunciado al pasar el mouse */
+         }
+
 
         #botones button img {
             /* Usamos unidades relativas o una combinación para las imágenes de los botones */
@@ -239,33 +290,55 @@
 
         #fin-juego {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0; /* Posicionar arriba */
+            left: 0; /* Posicionar a la izquierda */
+            width: 100%; /* Ocupar todo el ancho */
+            height: 100%; /* Ocupar toda la altura */
+            transform: none; /* Eliminar la transformación de centrado */
+            display: flex; /* Usar flexbox para centrar el contenido */
+            flex-direction: column; /* Apilar contenido verticalmente */
+            justify-content: flex-start; /* Alinear contenido al inicio (arriba) */
+            align-items: center; /* Centrar contenido horizontalmente */
             text-align: center;
             z-index: 30; /* Aseguramos que esté por encima de todo */
-            background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-             /* Aseguramos que no sea más ancho que la pantalla */
-            max-width: 95%;
+            background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
+            padding: 50px 10px 10px 10px; /* Añadir padding superior para el texto */
+            border-radius: 0; /* Eliminar bordes redondeados */
+            box-shadow: none; /* Eliminar sombra */
+             /* Fondo con la imagen del helicóptero */
+            background-image: url('https://raw.githubusercontent.com/MauroCasarin/Lola-Game/refs/heads/main/lola.svg');
+            background-size: cover; /* Ajusta la imagen para cubrir todo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-position: center; /* Centra la imagen */
         }
 
          #fin-juego h1 {
              font-size: 2em; /* Tamaño de fuente relativo */
              margin-bottom: 10px;
+              /* Sombra para el texto del título */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+             color: white; /* Color de texto blanco */
          }
 
          #fin-juego p {
              font-size: 1.2em; /* Tamaño de fuente relativo */
              margin-bottom: 20px;
+              /* Sombra para el texto de puntuación */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+             color: white; /* Color de texto blanco */
          }
 
          #fin-juego button {
              padding: 10px 20px;
              font-size: 1.2em;
              cursor: pointer;
+             /* Sombreado para el botón de fin de juego */
+             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+             transition: box-shadow 0.2s ease-in-out; /* Transición suave para el sombreado */
+         }
+
+         #fin-juego button:hover {
+             box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.5); /* Sombreado más pronunciado al pasar el mouse */
          }
 
 
@@ -324,6 +397,18 @@
              #botones .details img {
                  width: 40px; /* Ajusta el tamaño de las imágenes de detalles en móvil */
                  height: 40px;
+             }
+
+             #inicio h1 {
+                 font-size: 2.5em; /* Ajusta el tamaño del título en móvil */
+             }
+
+              #fin-juego h1 {
+                 font-size: 1.8em; /* Ajusta el tamaño del título en fin de juego móvil */
+             }
+
+             #fin-juego p {
+                 font-size: 1em; /* Ajusta el tamaño de la puntuación en fin de juego móvil */
              }
         }
 
@@ -604,7 +689,7 @@
                     clearInterval(intervalo);
                     objetivo.remove();
                 } else {
-                    // *** VERIFICAR COLISIÓN CON EL HELICÓPTERO AQUÍ ***
+                    // *** VERIFICAR COLISIÓN CON EL HELICOPTERO AQUÍ ***
                     if (verificarColisionHelicoptero(objetivo)) {
                         console.log('Colisión con helicóptero detectada. Game Over.'); // Log de depuración
                         clearInterval(intervalo); // Detener el movimiento del objetivo
@@ -735,6 +820,16 @@
                         shotPower++; // Aumentar el nivel del bonus de disparo
                         velocidadObjetivos += objetivoSpeedIncrementPorBonus; // Aumentar la velocidad de los objetivos por bonus
                         console.log(`Nuevo shotPower: ${shotPower}, Nueva velocidadObjetivos: ${velocidadObjetivos}`); // Log de depuración
+
+                        // Iniciar la animación de rotación del helicóptero
+                        helicoptero.classList.add('rotate');
+                        // Eliminar la clase de rotación después de que termine la animación
+                        helicoptero.addEventListener('animationend', () => {
+                            helicoptero.classList.remove('rotate');
+                             // Asegurarse de que el transform original se restaure
+                            helicoptero.style.transform = 'translateY(-50%)';
+                        }, { once: true }); // El listener se elimina después de ejecutarse una vez
+
                         // No activar Game Over, el juego continúa
                     }
                 }
@@ -844,10 +939,8 @@
                     objetivosEliminados++;
                     actualizarPuntuacion(); // Llamar a la función para actualizar puntuación y verificar bonus/dificultad
 
-                    // Crear chispas si shotPower es 3 o más
-                    if (shotPower >= 3) {
-                         crearChispas(laserRect.right, laserRect.top + laserRect.height / 2); // Crear chispas en el punto de colisión
-                    }
+                    // Crear chispas en el punto de colisión (siempre que haya colisión)
+                    crearChispas(laserRect.right, laserRect.top + laserRect.height / 2);
 
 
                     // El incremento de velocidad por objetivos eliminados cada 10 ya está en actualizarPuntuacion
@@ -977,7 +1070,8 @@
             juegoActivo = false;
             sonidos.gameOver.play();
             juego.style.display = 'none';
-            finJuego.style.display = 'block';
+            // Corregido: Eliminar el punto y coma dentro de la cadena de estilo
+            finJuego.style.display = 'flex'; /* Usar flex para centrar contenido */
             puntuacionFinal.textContent = 'Puntuación final: ' + puntuacion;
             // Limpiar intervalos para detener la creación de objetivos, nubes y lúpulos
             clearInterval(objetivoInterval);
@@ -1034,10 +1128,13 @@
             sonidos.disparo.play();
             // Animación de retroceso del helicóptero
             helicoptero.style.transition = 'transform 0.1s ease-in-out';
-            helicoptero.style.transform = 'translateY(-50%) translateX(-10px)'; // Retrocede un poco
+            // Asegurarse de que la rotación no se vea afectada por el retroceso temporal
+            const currentTransform = helicoptero.style.transform.replace('translateY(-50%)', '').trim();
+            helicoptero.style.transform = `translateY(-50%) translateX(-10px) ${currentTransform}`; // Retrocede un poco manteniendo otras transformaciones
             setTimeout(() => {
-                 helicoptero.style.transform = 'translateY(-50%) translateX(0)'; // Vuelve a la posición normal
-                 helicoptero.style.transition = ''; // Elimina la transición para el movimiento normal
+                 helicoptero.style.transform = `translateY(-50%) ${currentTransform}`; // Vuelve a la posición normal manteniendo otras transformaciones
+                 // No eliminar la transición aquí si queremos que la rotación sea suave
+                 // helicoptero.style.transition = ''; // Elimina la transición para el movimiento normal
             }, 100); // Duración del retroceso
 
             // Crear láser(es) basado en shotPower
@@ -1225,7 +1322,7 @@
             helicopteroY = altoGameArea / 2 - helicoptero.offsetHeight / 2;
             helicoptero.style.top = helicopteroY + 'px';
             helicoptero.style.left = '10%'; // Mantener la posición horizontal relativa
-            console.log(`Posición inicial del helicóptero: ${helicoptero.style.top}, ${helicoptero.style.left}`); // Log de depuración
+             console.log(`Posición inicial del helicóptero: ${helicoptero.style.top}, ${helicoptero.style.left}`); // Log de depuración
 
 
             // Iniciar la creación de objetivos y nubes
@@ -1279,7 +1376,7 @@
             nubeInterval = setInterval(crearNube, 3000); // Intervalo inicial de nubes
             // El lúpulo se creará basado en la puntuación, no en un intervalo fijo
             // lupuloInterval = setInterval(crearLupulo, 15000); // Eliminado el intervalo fijo
-             console.log('Intervalos de creación de objetivos y nubes reiniciados.'); // Log de depuración
+            console.log('Intervalos de creación de objetivos y nubes reiniciados.'); // Log de depuración
         });
     </script>
 </body>
