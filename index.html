@@ -121,6 +121,29 @@
              align-items: center; /* Centra verticalmente el botón disparar */
         }
 
+        /* Estilo para la nueva sección de detalles */
+        #botones .details {
+            display: flex;
+            flex-direction: column; /* Apila verticalmente el texto y las imágenes */
+            align-items: center; /* Centra horizontalmente el contenido */
+            text-align: center;
+            margin: 0 10px; /* Espacio a los lados */
+            color: white; /* Color de texto para que se vea sobre el fondo semi-transparente */
+            font-size: 0.9em; /* Tamaño de fuente un poco más pequeño */
+        }
+
+        #botones .details .items {
+            display: flex; /* Muestra las imágenes en fila */
+            gap: 10px; /* Espacio entre las imágenes */
+            margin-top: 5px; /* Espacio entre el texto y las imágenes */
+        }
+
+        #botones .details img {
+            width: 50px; /* Tamaño fijo para las imágenes de detalles */
+            height: 50px;
+            object-fit: contain; /* Asegura que la imagen se ajuste sin distorsionarse */
+        }
+
 
         #botones button {
             padding: 5px; /* Ajusta el padding de los botones */
@@ -287,6 +310,15 @@
              #puntuacion {
                  font-size: 1.2rem; /* Ajusta el tamaño de la fuente de la puntuación */
              }
+
+             #botones .details {
+                 margin: 0 5px; /* Reduce el espacio a los lados en móvil */
+             }
+
+             #botones .details img {
+                 width: 40px; /* Ajusta el tamaño de las imágenes de detalles en móvil */
+                 height: 40px;
+             }
         }
 
     </style>
@@ -311,7 +343,21 @@
                     <img src="https://raw.githubusercontent.com/MauroCasarin/LOLA-shot/refs/heads/main/BOTAbajo.png" alt="Abajo">
                 </button>
             </div>
-             <div class="right-button">
+
+            <div class="details">
+                <p>Obstáculos a disparar:</p>
+                <div class="items">
+                    <img src="https://raw.githubusercontent.com/MauroCasarin/Lola-Game/refs/heads/main/brahma.svg" alt="Obstáculo 1" width="50" height="50">
+                    <img src="https://raw.githubusercontent.com/MauroCasarin/Lola-Game/refs/heads/main/quilmes.svg" alt="Obstáculo 2" width="50" height="50">
+                    <img src="https://raw.githubusercontent.com/MauroCasarin/Lola-Game/refs/heads/main/Bud.svg" alt="Obstáculo 3" width="50" height="50">
+                    <img src="https://raw.githubusercontent.com/MauroCasarin/Lola-Game/refs/heads/main/stela.svg" alt="Obstáculo 4" width="50" height="50">
+                </div>
+                <p>Bonus:</p>
+                <div class="items">
+                    <img src="https://raw.githubusercontent.com/MauroCasarin/LOLA-shot/c6f25cbef02cd861823d66b6854908825cd9cf06/lupulo.svg" alt="Bonus Lúpulo" width="50" height="50">
+                </div>
+            </div>
+            <div class="right-button">
                 <button id="disparar">
                     <img src="https://raw.githubusercontent.com/MauroCasarin/LOLA-shot/refs/heads/main/BOTdisparo.png" alt="Disparar">
                 </button>
@@ -568,9 +614,9 @@
         // Función para crear una nube
         function crearNube() {
             if (!juegoActivo) return;
-            // console.log('Creando nube...'); // Log de depuración
-            // Limitar el número de nubes para no saturar
-            if (gameArea.querySelectorAll('.cloud').length < 5) { // Aumentamos el límite de nubes
+            // Limitar el número de nubes a 1
+            if (gameArea.querySelectorAll('.cloud').length < 1) {
+                console.log('Creando nube...'); // Log de depuración
                 const nube = document.createElement('img');
                 nube.src = nubesSrc[Math.floor(Math.random() * nubesSrc.length)];
                 nube.classList.add('cloud');
@@ -856,7 +902,7 @@
                 if (bombaRect.top > gameAreaRect.bottom) { // Sale por abajo
                     clearInterval(intervalo);
                     bomba.remove();
-                     // Encontrar y eliminar la bomba del array
+                     // Encontrar y eliminar el bomba del array
                     const bombaIndex = bombas.indexOf(bomba);
                     if (bombaIndex > -1) {
                         bombas.splice(bombaIndex, 1);
