@@ -38,7 +38,7 @@
             box-shadow: none; /* Eliminar sombra */
             /* Fondo con la imagen del helicóptero */
             background-image: url('https://raw.githubusercontent.com/MauroCasarin/Lola-Game/refs/heads/main/lola.svg');
-            background-size: cover; /* Ajusta la imagen para cubrir todo */
+            background-size: contain; /* Ajusta la imagen al tamaño del contenedor (más pequeño) */
             background-repeat: no-repeat; /* Evita que la imagen se repita */
             background-position: center; /* Centra la imagen */
         }
@@ -86,7 +86,7 @@
             background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente para el área de juego */
 
             /* Fondo de imagen animado */
-            background-image: url('https://raw.githubusercontent.com/MauroCasarin/LOLA-shot/refs/heads/main/nubesfondo.jpg');
+            background-image: url('https://raw.githubusercontent.com/LOLAPALUPULO/LOLA-Shot/refs/heads/main/nubesfondo.jpg'); /* URL de fondo del área de juego */
             background-repeat: repeat-x; /* Repetir horizontalmente */
             background-position: 0 0; /* Posición inicial */
             /* Animación de desplazamiento - Ajustada a 15s para mayor velocidad */
@@ -307,7 +307,7 @@
             box-shadow: none; /* Eliminar sombra */
              /* Fondo con la imagen del helicóptero */
             background-image: url('https://raw.githubusercontent.com/MauroCasarin/Lola-Game/refs/heads/main/lola.svg');
-            background-size: cover; /* Ajusta la imagen para cubrir todo */
+            background-size: contain; /* Ajusta la imagen al tamaño del contenedor (más pequeño) */
             background-repeat: no-repeat; /* Evita que la imagen se repita */
             background-position: center; /* Centra la imagen */
         }
@@ -689,7 +689,7 @@
                     clearInterval(intervalo);
                     objetivo.remove();
                 } else {
-                    // *** VERIFICAR COLISIÓN CON EL HELICOPTERO AQUÍ ***
+                    // *** VERIFICAR COLISIÓN CON EL HELICÓPTERO AQUÍ ***
                     if (verificarColisionHelicoptero(objetivo)) {
                         console.log('Colisión con helicóptero detectada. Game Over.'); // Log de depuración
                         clearInterval(intervalo); // Detener el movimiento del objetivo
@@ -1070,7 +1070,6 @@
             juegoActivo = false;
             sonidos.gameOver.play();
             juego.style.display = 'none';
-            // Corregido: Eliminar el punto y coma dentro de la cadena de estilo
             finJuego.style.display = 'flex'; /* Usar flex para centrar contenido */
             puntuacionFinal.textContent = 'Puntuación final: ' + puntuacion;
             // Limpiar intervalos para detener la creación de objetivos, nubes y lúpulos
